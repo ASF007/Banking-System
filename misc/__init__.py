@@ -168,3 +168,25 @@ def withdraw(name, id, amount):
         .format(amount, float(balance)))
     else:
       print("\n[Error]: You cannot withdraw more amount than you have. \n")
+      
+
+def purchase(name, id, item, amount):
+  if not already_exists(name, True, id):
+    print("\n[Error]: Invalid credentials supplied.\n")
+  else:
+    q = "select balance from bank where name='{}' and id={}".format(name,id)
+    cur.execute(q)
+    balance = cur.fetchone()[0]
+
+    if check_validity(balance,amount):
+        q = "update bank set balance=balance-{} where name= '{}' and id={}".format(amount,name,id)
+        cur.execute(q)
+        con.commit()
+        q = "select balance from bank where name='{}' and id={}".format(name,id)
+        cur.execute(q)
+        balance = cur.fetchone()[0]
+        print(
+        "\n The item `{}` has been successfully purchased, it shall will be dispatched to your location within 3 days.\n Your new balance is {} OMR"
+            .format(item, float(balance)))
+    else:
+      print("\n[Error]: You do not have enough balance to purchase {}. \n".format(item))
