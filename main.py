@@ -1,11 +1,20 @@
-from misc import create_table, make_account, show_data, get_records, ux, delete, deposit, withdraw, fmt_item
+from misc import (
+  create_table, 
+  make_account, 
+  show_data, 
+  get_records, 
+  ux, delete, 
+  deposit, 
+  withdraw, 
+  purchase
+)
 
 create_table()  # creates an table automatically for you on runtime
 
 promt = "y"  # we start with a yes..
 
 while promt.lower(
-) == "y":  # the user now gets thrown in our loop until he yeets it :P
+) == "y":  
   print(ux)
   choice = int(input(">>> Enter your option [1-7]: "))
 
@@ -37,7 +46,12 @@ while promt.lower(
     delete(name.lower(), id)
 
   elif choice == 4:
-    print("🚧 National Bank E store is work in progress, come again later 🚧")
+    name = input("\nEnter your account's name: ")
+    id = input("Enter the Unique ID of your account: ")
+    item = input("Enter the item to be purchased: ")
+    cost = float(input("Enter the cost of the item to be purchased: "))
+    purchase(name,id,item,cost)
+    print()
 
   elif choice == 5:
     name = input("\nEnter your account's name: ")
@@ -55,14 +69,14 @@ while promt.lower(
   elif choice == 7:
     print(
       "\nThanks for banking with National Bank, See you next time!"
-    )  # the user has lost all sanity and has decided to break free of our loop 💀
+    )  
     break
 
-  else:  # after being in our loop, the user is loosing sanity
+  else:  
     print("\n[Error]: Invalid Option Given! Please select [1-7]\n")
 
   promt = input("\nDo you wish to proceed? [y/n]: ")
   print()
 
-else:  # the user got tired of our infinite loop and decided to YEET it
+else:  
   print("\nThanks for banking with National Bank, See you next time!")
