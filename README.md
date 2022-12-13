@@ -1,5 +1,5 @@
 <div class="header">
-  <p align = "center"><src="assets/title.png"></p>
+  <p align = "center"><img src="assets/title.png"></p>
 </div>
 
 # What is this? <br></br>
